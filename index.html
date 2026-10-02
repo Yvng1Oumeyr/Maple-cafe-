@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Maple Cafe & Bakery — modern cafe, breakfast, coffee, pastries and more in Addis Ababa.">
+  <title>Maple Cafe & Bakery | Addis Ababa</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --ink:#211913;
+      --muted:#756b63;
+      --cream:#f7f2e9;
+      --paper:#fffdf9;
+      --gold:#b88345;
+      --gold2:#d8aa6b;
+      --line:#e9dfd2;
+      --dark:#191310;
+      --green:#287a4b;
+      --shadow:0 18px 50px rgba(37,24,15,.10);
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"DM Sans",Arial,sans-serif;
+      color:var(--ink);
+      background:var(--paper);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+    img{display:block;width:100%}
+    a{color:inherit}
+    button,input,textarea{font:inherit}
+    .container{width:min(1160px,92%);margin:auto}
+    .serif{font-family:"Playfair Display",Georgia,serif}
+    .eyebrow{
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.75rem;
+      font-weight:700;
+      color:var(--gold);
+    }
+
+    /* Announcement */
+    .announcement{
+      background:var(--dark);
+      color:#fff;
+      text-align:center;
+      padding:9px 15px;
+      font-size:.82rem;
+      letter-spacing:.02em;
+    }
+
+    /* Header */
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(255,253,249,.94);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(33,25,19,.08);
+    }
+    .nav{
+      min-height:78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:25px;
+    }
+    .brand{
+      text-decoration:none;
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .brand-mark{
+      width:42px;height:42px;border-radius:50%;
+      display:grid;place-items:center;
+      background:var(--ink);color:var(--gold2);
+      font-family:"Playfair Display",serif;
+      font-size:1.35rem;font-weight:700;
+    }
+    .brand-name{
+      font-family:"Playfair Display",serif;
+      font-size:1.45rem;font-weight:700;
+      line-height:1;
+    }
+    .brand-sub{
+      display:block;
+      font-family:"DM Sans",sans-serif;
+      font-size:.58rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-top:4px;
+    }
+    nav{display:flex;align-items:center;gap:27px}
+    nav a{text-decoration:none;font-weight:600;font-size:.9rem}
+    nav a:hover{color:var(--gold)}
+    .nav-cta{
+      background:var(--ink);color:#fff!important;
+      padding:11px 17px;border-radius:999px;
+    }
+    .menu-toggle{
+      display:none;border:0;background:none;font-size:1.8rem;cursor:pointer;
+    }
+
+    /* Hero */
+    .hero{
+      min-height:calc(100vh - 112px);
+      position:relative;
+      display:grid;
+      align-items:center;
+      background:
+        linear-gradient(90deg,rgba(15,10,7,.76) 0%,rgba(15,10,7,.46) 48%,rgba(15,10,7,.12) 100%),
+        url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=2000&q=85") center/cover;
+      color:#fff;
+    }
+    .hero-content{padding:100px 0;max-width:720px}
+    .hero .eyebrow{color:#e7bd84}
+    .hero h1{
+      font-family:"Playfair Display",serif;
+      font-size:clamp(3.2rem,7vw,6.7rem);
+      line-height:.95;
+      margin:17px 0 25px;
+      letter-spacing:-.045em;
+    }
+    .hero p{
+      font-size:1.08rem;
+      max-width:590px;
+      color:rgba(255,255,255,.87);
+    }
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      text-decoration:none;border:0;cursor:pointer;
+      padding:14px 21px;border-radius:999px;
+      font-weight:700;transition:.2s;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-gold{background:var(--gold2);color:var(--ink)}
+    .btn-light{background:#fff;color:var(--ink)}
+    .hero-note{
+      margin-top:42px;
+      display:flex;gap:20px;flex-wrap:wrap;
+      color:rgba(255,255,255,.8);font-size:.88rem;
+    }
+    .hero-note span{display:flex;align-items:center;gap:7px}
+
+    /* Intro */
+    section{padding:100px 0}
+    .section-head{text-align:center;max-width:700px;margin:0 auto 50px}
+    .section-head h2{
+      font-family:"Playfair Display",serif;
+      font-size:clamp(2.2rem,4vw,3.6rem);
+      line-height:1.05;margin:12px 0 16px;
+    }
+    .section-head p{color:var(--muted)}
+
+    .story-grid{
+      display:grid;grid-template-columns:1.02fr .98fr;
+      gap:70px;align-items:center;
+    }
+    .story-image{position:relative}
+    .story-image img{height:560px;object-fit:cover;border-radius:var(--radius)}
+    .floating-card{
+      position:absolute;right:-25px;bottom:28px;
+      background:#fff;padding:21px 24px;border-radius:18px;
+      box-shadow:var(--shadow);max-width:240px;
+    }
+    .floating-card strong{display:block;font-family:"Playfair Display",serif;font-size:1.4rem}
+    .story-copy h2{
+      font-family:"Playfair Display",serif;
+      font-size:clamp(2.4rem,4vw,4rem);
+      line-height:1.05;margin:12px 0 20px;
+    }
+    .story-copy p{color:var(--muted);margin-bottom:16px}
+    .ticks{list-style:none;margin:25px 0}
+    .ticks li{margin:10px 0}
+    .ticks li::before{content:"✓";color:var(--gold);font-weight:800;margin-right:10px}
+
+    /* Menu */
+    #menu{background:var(--cream)}
+    .filters{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:35px}
+    .filter{
+      border:1px solid var(--line);background:#fff;
+      padding:10px 16px;border-radius:999px;cursor:pointer;
+      font-weight:600;color:var(--muted);
+    }
+    .filter.active,.filter:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .menu-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+    }
+    .menu-card{
+      background:#fff;border:1px solid var(--line);
+      padding:25px;border-radius:18px;
+      transition:.2s;
+    }
+    .menu-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+    .menu-card.hidden{display:none}
+    .menu-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+    .menu-card h3{font-family:"Playfair Display",serif;font-size:1.45rem}
+    .menu-card .tag{font-size:.68rem;color:var(--gold);font-weight:800;text-transform:uppercase}
+    .menu-card p{color:var(--muted);font-size:.9rem;margin:8px 0 18px}
+    .item{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid #f0e9df;font-size:.91rem}
+    .item span:last-child{font-weight:700;color:var(--gold);white-space:nowrap}
+
+    /* Feature strip */
+    .feature-strip{padding:0;background:var(--ink);color:#fff}
+    .features{display:grid;grid-template-columns:repeat(4,1fr)}
+    .feature{padding:28px 20px;text-align:center;border-right:1px solid rgba(255,255,255,.12)}
+    .feature:last-child{border:0}
+    .feature b{display:block;color:#e3b778;margin-bottom:5px}
+    .feature span{font-size:.83rem;color:rgba(255,255,255,.68)}
+
+    /* Gallery */
+    .gallery{
+      display:grid;grid-template-columns:1.25fr .75fr .75fr;
+      grid-auto-rows:230px;gap:14px;
+    }
+    .gallery a{overflow:hidden;border-radius:18px;display:block}
+    .gallery a:first-child{grid-row:span 2}
+    .gallery img{height:100%;object-fit:cover;transition:.45s}
+    .gallery a:hover img{transform:scale(1.06)}
+
+    /* Reviews */
+    .reviews{background:var(--cream)}
+    .review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .review{
+      background:#fff;padding:27px;border-radius:20px;border:1px solid var(--line)
+    }
+    .stars{color:#c48b3c;letter-spacing:2px;margin-bottom:14px}
+    .review p{font-family:"Playfair Display",serif;font-size:1.2rem;line-height:1.45}
+    .review small{display:block;color:var(--muted);margin-top:18px}
+
+    /* Visit */
+    .visit{
+      display:grid;grid-template-columns:1fr 1fr;
+      border-radius:28px;overflow:hidden;background:var(--ink);color:#fff;
+    }
+    .visit-copy{padding:55px}
+    .visit-copy h2{font-family:"Playfair Display",serif;font-size:3rem;line-height:1.05;margin:12px 0 18px}
+    .visit-copy p{color:rgba(255,255,255,.7)}
+    .visit-details{margin:28px 0}
+    .detail{display:flex;gap:13px;margin:16px 0}
+    .detail strong{display:block;color:#e3b778}
+    .detail span{color:rgba(255,255,255,.75)}
+    .map{
+      min-height:450px;
+      background:
+        linear-gradient(rgba(20,15,11,.15),rgba(20,15,11,.15)),
+        url("https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1200&q=85") center/cover;
+    }
+
+    /* Reservation */
+    .reserve{
+      max-width:850px;margin:auto;
+      background:#fff;border:1px solid var(--line);
+      padding:35px;border-radius:24px;box-shadow:var(--shadow);
+    }
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+    label{font-size:.8rem;font-weight:700;display:block;margin-bottom:6px}
+    input,select,textarea{
+      width:100%;padding:13px 14px;
+      border:1px solid var(--line);border-radius:12px;
+      outline:none;background:#fff;
+    }
+    input:focus,select:focus,textarea:focus{border-color:var(--gold)}
+    textarea{min-height:100px;resize:vertical}
+    .full{grid-column:1/-1}
+    .form-note{font-size:.78rem;color:var(--muted);margin-top:12px}
+
+    /* Footer */
+    footer{background:#120e0b;color:#fff;padding:55px 0 25px}
+    .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:35px}
+    footer h3{color:#e3b778;margin-bottom:13px}
+    footer p,footer a{color:rgba(255,255,255,.68);text-decoration:none;font-size:.9rem}
+    footer a{display:block;margin:7px 0}
+    .copyright{border-top:1px solid rgba(255,255,255,.1);margin-top:40px;padding-top:20px;text-align:center;color:rgba(255,255,255,.45);font-size:.78rem}
+
+    .whatsapp{
+      position:fixed;right:20px;bottom:20px;z-index:1200;
+      width:58px;height:58px;border-radius:50%;
+      display:grid;place-items:center;text-decoration:none;
+      background:#25d366;color:#fff;font-size:25px;
+      box-shadow:0 10px 25px rgba(0,0,0,.2);
+    }
+
+    .reveal{opacity:0;transform:translateY(25px);transition:.7s ease}
+    .reveal.show{opacity:1;transform:none}
+
+    @media(max-width:900px){
+      nav{display:none}
+      .menu-toggle{display:block}
+      nav.open{
+        display:flex;position:absolute;left:0;right:0;top:78px;
+        background:#fff;flex-direction:column;align-items:stretch;
+        padding:15px 6%;border-bottom:1px solid var(--line);
+      }
+      nav.open a{padding:10px}
+      .story-grid,.visit{grid-template-columns:1fr}
+      .menu-grid{grid-template-columns:1fr 1fr}
+      .features{grid-template-columns:1fr 1fr}
+      .gallery{grid-template-columns:1fr 1fr;grid-auto-rows:210px}
+      .gallery a:first-child{grid-row:span 1}
+      .review-grid{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr 1fr}
+      .map{min-height:300px}
+    }
+
+    @media(max-width:600px){
+      section{padding:70px 0}
+      .hero{min-height:80vh}
+      .hero-content{padding:75px 0}
+      .hero h1{font-size:3.5rem}
+      .story-image img{height:420px}
+      .floating-card{right:10px;bottom:10px}
+      .menu-grid,.form-grid,.footer-grid{grid-template-columns:1fr}
+      .full{grid-column:auto}
+      .gallery{grid-template-columns:1fr;grid-auto-rows:240px}
+      .gallery a:first-child{grid-row:auto}
+      .features{grid-template-columns:1fr 1fr}
+      .feature{padding:22px 10px}
+      .visit-copy{padding:35px 25px}
+      .visit-copy h2{font-size:2.4rem}
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="announcement">
+  Open daily · 7:30 AM – 3:00 AM · Addis Ababa
+</div>
+
+<header>
+  <div class="container nav">
+    <a class="brand" href="#home">
+      <span class="brand-mark">M</span>
+      <span>
+        <span class="brand-name">Maple</span>
+        <span class="brand-sub">Cafe & Bakery</span>
+      </span>
+    </a>
+
+    <button class="menu-toggle" aria-label="Open menu" onclick="toggleNav()">☰</button>
+
+    <nav id="nav">
+      <a href="#story">Our Story</a>
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+      <a class="nav-cta" href="#reserve">Reserve</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-content reveal">
+      <div class="eyebrow">Modern Cafe · Bakery · Addis Ababa</div>
+      <h1 class="serif">A little more warmth in your day.</h1>
+      <p>
+        Comfort, quality and beautiful interiors. Start your morning with
+        carefully prepared breakfast, authentic coffee, pastries and sweet moments.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="#menu">Explore the menu →</a>
+        <a class="btn btn-light" href="#visit">Find Maple</a>
+      </div>
+
+      <div class="hero-note">
+        <span>☕ Fresh coffee</span>
+        <span>🥐 Fresh pastries</span>
+        <span>✨ Relaxed atmosphere</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="story">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-image reveal">
+        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=85" alt="Cafe interior">
+        <div class="floating-card">
+          <strong>Where aesthetic meets comfort.</strong>
+          <span>Designed for slow mornings, good conversations and great food.</span>
+        </div>
+      </div>
+
+      <div class="story-copy reveal">
+        <div class="eyebrow">Our story</div>
+        <h2>Food should be an experience.</h2>
+        <p>
+          Maple is a modern cafe and bakery created for people who appreciate
+          the fine details — from the first pour of coffee to the final bite.
+        </p>
+        <p>
+          The space is designed to feel welcoming whether you are meeting a
+          friend, having breakfast, working for a while or simply taking a break.
+        </p>
+
+        <ul class="ticks">
+          <li>Carefully crafted breakfast</li>
+          <li>Specialty coffee & refreshments</li>
+          <li>Fresh pastries and desserts</li>
+        </ul>
+
+        <a class="btn btn-gold" href="#menu">Discover Maple</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="feature-strip">
+  <div class="container features">
+    <div class="feature"><b>Breakfast</b><span>Morning favorites</span></div>
+    <div class="feature"><b>Coffee</b><span>Authentic brews</span></div>
+    <div class="feature"><b>Bakery</b><span>Sweet treats</span></div>
+    <div class="feature"><b>Late hours</b><span>Open until 3 AM</span></div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">The menu</div>
+      <h2>Made for every kind of morning.</h2>
+      <p>Explore a selection of Maple's published menu categories.</p>
+    </div>
+
+    <div class="filters">
+      <button class="filter active" data-filter="all">All</button>
+      <button class="filter" data-filter="morning">Morning</button>
+      <button class="filter" data-filter="eggs">Eggs</button>
+      <button class="filter" data-filter="toast">Toast & Oats</button>
+      <button class="filter" data-filter="croissant">Croissants</button>
+      <button class="filter" data-filter="sweet">Crepes & Sweets</button>
+    </div>
+
+    <div class="menu-grid">
+
+      <article class="menu-card" data-category="morning">
+        <div class="menu-top"><h3>Maple Morning</h3><span class="tag">Breakfast</span></div>
+        <p>Start the day with generous breakfast platters.</p>
+        <div class="item"><span>Special Turkish Kahvaltı</span></div>
+        <div class="item"><span>Special Arabian Futoor</span></div>
+      </article>
+
+      <article class="menu-card" data-category="morning">
+        <div class="menu-top"><h3>Traditional Favorites</h3><span class="tag">Classic</span></div>
+        <p>Comforting dishes with familiar flavors.</p>
+        <div class="item"><span>Ful Medames Special</span></div>
+        <div class="item"><span>Ful Medames Normal</span></div>
+        <div class="item"><span>Chechebsa Special</span></div>
+        <div class="item"><span>Fetira with Egg & Honey</span></div>
+        <div class="item"><span>Malawah with Honey</span></div>
+        <div class="item"><span>Asida Genfo with Dates</span></div>
+        <div class="item"><span>Haris</span></div>
+      </article>
+
+      <article class="menu-card" data-category="eggs">
+        <div class="menu-top"><h3>Eggs & Omelets</h3><span class="tag">Fresh</span></div>
+        <p>Egg dishes prepared for a satisfying start.</p>
+        <div class="item"><span>Scrambled Eggs Sandwich</span></div>
+        <div class="item"><span>Fried Egg Sandwich</span></div>
+        <div class="item"><span>Plain Omelet</span></div>
+        <div class="item"><span>Cheese Omelet</span></div>
+        <div class="item"><span>Cheese Omelet with Beef</span></div>
+        <div class="item"><span>Shakshuka</span></div>
+      </article>
+
+      <article class="menu-card" data-category="toast">
+        <div class="menu-top"><h3>Toast & Oats</h3><span class="tag">Light</span></div>
+        <p>Simple, fresh and satisfying.</p>
+        <div class="item"><span>French Toast</span></div>
+        <div class="item"><span>Avocado Toast</span></div>
+        <div class="item"><span>Avocado Toast with Egg</span></div>
+        <div class="item"><span>Toast with Egg & Cheese</span></div>
+        <div class="item"><span>Oatmeal</span></div>
+      </article>
+
+      <article class="menu-card" data-category="croissant">
+        <div class="menu-top"><h3>Croissants</h3><span class="tag">Bakery</span></div>
+        <p>Buttery croissants and signature sandwiches.</p>
+        <div class="item"><span>Croissant Steak Royale</span></div>
+        <div class="item"><span>Croissant Sunrise Chicken</span></div>
+        <div class="item"><span>Croissant Verde</span></div>
+        <div class="item"><span>Classic Croissant</span></div>
+        <div class="item"><span>Egg & Cheese Croissant</span></div>
+      </article>
+
+      <article class="menu-card" data-category="sweet">
+        <div class="menu-top"><h3>Crepes & Sweets</h3><span class="tag">Sweet</span></div>
+        <p>Something sweet for the perfect finish.</p>
+        <div class="item"><span>Crepes with Chocolate</span></div>
+        <div class="item"><span>Crepes with Cream Cheese</span></div>
+        <div class="item"><span>Pancake</span></div>
+        <div class="item"><span>Waffle</span></div>
+        <div class="item"><span>Legemates with Chocolate</span></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">A feast for the eyes</div>
+      <h2>Come for the coffee. Stay for the atmosphere.</h2>
+      <p>Replace these demo photos with Maple's own approved photos before delivery.</p>
+    </div>
+
+    <div class="gallery">
+      <a href="#reserve"><img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1200&q=85" alt="Coffee shop"></a>
+      <a href="#reserve"><img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=900&q=85" alt="Cafe table"></a>
+      <a href="#reserve"><img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=900&q=85" alt="Pastry"></a>
+      <a href="#reserve"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=85" alt="Coffee"></a>
+      <a href="#reserve"><img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85" alt="Food"></a>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Guest notes</div>
+      <h2>Good food. Good coffee. Good moments.</h2>
+      <p>Sample review presentation for the website concept.</p>
+    </div>
+
+    <div class="review-grid">
+      <article class="review">
+        <div class="stars">★★★★★</div>
+        <p>“A lovely cafe with great coffee drinks and a bright, modern space.”</p>
+        <small>Guest review · recent</small>
+      </article>
+      <article class="review">
+        <div class="stars">★★★★★</div>
+        <p>“The food was flavorful, the portion was satisfying, and the atmosphere was welcoming.”</p>
+        <small>Guest review · recent</small>
+      </article>
+      <article class="review">
+        <div class="stars">★★★★★</div>
+        <p>“A comfortable place to relax, catch up with friends and enjoy something sweet.”</p>
+        <small>Guest review · concept preview</small>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="reserve">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Reservations</div>
+      <h2>Save your table.</h2>
+      <p>This demo sends the reservation request to Maple's WhatsApp number.</p>
+    </div>
+
+    <form class="reserve reveal" id="reservationForm">
+      <div class="form-grid">
+        <div>
+          <label for="name">Your name</label>
+          <input id="name" required placeholder="Full name">
+        </div>
+        <div>
+          <label for="phone">Phone</label>
+          <input id="phone" required placeholder="+251...">
+        </div>
+        <div>
+          <label for="date">Date</label>
+          <input id="date" type="date" required>
+        </div>
+        <div>
+          <label for="time">Time</label>
+          <input id="time" type="time" required>
+        </div>
+        <div>
+          <label for="guests">Guests</label>
+          <select id="guests">
+            <option>1</option><option>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7+</option>
+          </select>
+        </div>
+        <div>
+          <label for="occasion">Occasion</label>
+          <select id="occasion">
+            <option>Casual visit</option>
+            <option>Breakfast</option>
+            <option>Birthday</option>
+            <option>Meeting</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="full">
+          <label for="message">Message (optional)</label>
+          <textarea id="message" placeholder="Any special request?"></textarea>
+        </div>
+        <div class="full">
+          <button class="btn btn-gold" type="submit">Request via WhatsApp →</button>
+          <p class="form-note">A reservation is not confirmed until Maple confirms it.</p>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="container">
+    <div class="visit reveal">
+      <div class="visit-copy">
+        <div class="eyebrow">Visit Maple</div>
+        <h2>Make room for a little Maple.</h2>
+        <p>Plan your next coffee, breakfast or late-night catch-up.</p>
+
+        <div class="visit-details">
+          <div class="detail">
+            <div>📍</div>
+            <div><strong>Location</strong><span>Addis Ababa, Ethiopia</span></div>
+          </div>
+          <div class="detail">
+            <div>🕐</div>
+            <div><strong>Open daily</strong><span>7:30 AM – 3:00 AM</span></div>
+          </div>
+          <div class="detail">
+            <div>☎</div>
+            <div><strong>Call</strong><span>0954 111 777 · 0954 111 888</span></div>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="tel:0954111777">Call Maple</a>
+          <a class="btn btn-light" href="https://www.google.com/maps/search/?api=1&query=Maple+Cafe+Addis+Ababa" target="_blank">Open Maps</a>
+        </div>
+      </div>
+      <div class="map" aria-label="Map-style cafe image"></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="#home">
+          <span class="brand-mark">M</span>
+          <span>
+            <span class="brand-name" style="color:#fff">Maple</span>
+            <span class="brand-sub" style="color:#aaa">Cafe & Bakery</span>
+          </span>
+        </a>
+        <p style="margin-top:15px">Your modern cafe and bakery.</p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <a href="#story">Our Story</a>
+        <a href="#menu">Menu</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#reviews">Reviews</a>
+      </div>
+      <div>
+        <h3>Visit</h3>
+        <a href="#visit">Location</a>
+        <a href="#reserve">Reservations</a>
+        <a href="tel:0954111777">0954 111 777</a>
+        <a href="tel:0954111888">0954 111 888</a>
+      </div>
+      <div>
+        <h3>Social</h3>
+        <a href="https://www.tiktok.com/@maple.et" target="_blank">TikTok @maple.et</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Maple+Cafe+Addis+Ababa" target="_blank">Google Maps</a>
+      </div>
+    </div>
+
+    <div class="copyright">
+      © 2026 Maple Cafe & Bakery · Website concept
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp" href="https://wa.me/251954111777" target="_blank" aria-label="WhatsApp">WA</a>
+
+<script>
+  function toggleNav(){
+    document.getElementById("nav").classList.toggle("open");
+  }
+
+  document.querySelectorAll("#nav a").forEach(a => {
+    a.addEventListener("click", () => document.getElementById("nav").classList.remove("open"));
+  });
+
+  // Menu filters
+  const filters = document.querySelectorAll(".filter");
+  const cards = document.querySelectorAll(".menu-card");
+
+  filters.forEach(btn => {
+    btn.addEventListener("click", () => {
+      filters.forEach(x => x.classList.remove("active"));
+      btn.classList.add("active");
+
+      const value = btn.dataset.filter;
+      cards.forEach(card => {
+        card.classList.toggle(
+          "hidden",
+          value !== "all" && card.dataset.category !== value
+        );
+      });
+    });
+  });
+
+  // Reservation -> WhatsApp
+  document.getElementById("reservationForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const date = document.getElementById("date").value;
+    const time = document.getElementById("time").value;
+    const guests = document.getElementById("guests").value;
+    const occasion = document.getElementById("occasion").value;
+    const message = document.getElementById("message").value;
+
+    const text =
+      `Hello Maple Cafe! I'd like to request a reservation.%0A%0A` +
+      `Name: ${encodeURIComponent(name)}%0A` +
+      `Phone: ${encodeURIComponent(phone)}%0A` +
+      `Date: ${encodeURIComponent(date)}%0A` +
+      `Time: ${encodeURIComponent(time)}%0A` +
+      `Guests: ${encodeURIComponent(guests)}%0A` +
+      `Occasion: ${encodeURIComponent(occasion)}%0A` +
+      `Message: ${encodeURIComponent(message)}`;
+
+    window.open("https://wa.me/251954111777?text=" + text, "_blank");
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add("show");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.12});
+
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
